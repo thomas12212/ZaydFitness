@@ -276,3 +276,40 @@ function initSmoothScroll() {
         });
     });
 }
+
+/* ===========================
+   LIGHTBOX
+   =========================== */
+
+function openLightbox(imgEl) {
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    if (!lightbox || !lightboxImg) return;
+
+    lightboxImg.src = imgEl.src;
+    lightboxImg.alt = imgEl.alt;
+    lightbox.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox(e) {
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+
+    // Only close if clicking backdrop or close button, not the image itself
+    if (e.target === lightboxImg) return;
+
+    lightbox.classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+// Close lightbox with Escape key
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        const lightbox = document.getElementById('lightbox');
+        if (lightbox && lightbox.classList.contains('active')) {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    }
+});

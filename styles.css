@@ -480,6 +480,123 @@ body.lang-vi .final-cta h2 {
 }
 
 /* ===========================
+   RESULTS / TRANSFORMATIONS
+   =========================== */
+
+.results-gallery {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.results-featured {
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.results-featured img {
+    width: 100%;
+    max-height: 480px;
+    object-fit: cover;
+    display: block;
+    border-radius: 8px;
+    transition: transform 0.4s ease, filter 0.3s ease;
+}
+
+.results-featured img:hover {
+    transform: scale(1.02);
+    filter: brightness(1.1);
+}
+
+.results-thumbs {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+}
+
+.results-thumb {
+    border-radius: 6px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.results-thumb img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    display: block;
+    border-radius: 6px;
+    transition: transform 0.4s ease, filter 0.3s ease;
+}
+
+.results-thumb img:hover {
+    transform: scale(1.04);
+    filter: brightness(1.1);
+}
+
+/* ===========================
+   LIGHTBOX
+   =========================== */
+
+.lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(0, 0, 0, 0.92);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    justify-content: center;
+    align-items: center;
+    padding: 24px;
+    cursor: pointer;
+}
+
+.lightbox.active {
+    display: flex;
+    animation: lightboxFadeIn 0.3s ease;
+}
+
+@keyframes lightboxFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.lightbox-img {
+    max-width: 90vw;
+    max-height: 90vh;
+    object-fit: contain;
+    border-radius: 8px;
+    cursor: default;
+    animation: lightboxZoomIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes lightboxZoomIn {
+    from { transform: scale(0.9); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 28px;
+    background: none;
+    border: none;
+    color: var(--white);
+    font-size: 2.5rem;
+    font-weight: 300;
+    cursor: pointer;
+    z-index: 10000;
+    transition: color 0.3s ease;
+    line-height: 1;
+}
+
+.lightbox-close:hover {
+    color: var(--cyan);
+}
+
+/* ===========================
    ABOUT SECTION
    =========================== */
 
@@ -1080,6 +1197,18 @@ body.lang-vi .final-cta h2 {
     .pain-grid,
     .offer-grid {
         grid-template-columns: 1fr;
+    }
+
+    .results-thumbs {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .results-thumb img {
+        height: 140px;
+    }
+
+    .results-featured img {
+        max-height: 360px;
     }
 
     .form-wrapper {
