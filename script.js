@@ -278,13 +278,23 @@ function initSmoothScroll() {
 }
 
 /* ===========================
-   LIGHTBOX
+   LIGHTBOX WITH CAROUSEL
    =========================== */
+
+let galleryImages = [];
+let currentImageIndex = 0;
+
+function getGalleryImages() {
+    return Array.from(document.querySelectorAll('.gallery-img'));
+}
 
 function openLightbox(imgEl) {
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightboxImg');
     if (!lightbox || !lightboxImg) return;
+
+    galleryImages = getGalleryImages();
+    currentImageIndex = galleryImages.indexOf(imgEl);
 
     lightboxImg.src = imgEl.src;
     lightboxImg.alt = imgEl.alt;
@@ -293,23 +303,51 @@ function openLightbox(imgEl) {
 }
 
 function closeLightbox(e) {
-    const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightboxImg');
 
-    // Only close if clicking backdrop or close button, not the image itself
-    if (e.target === lightboxImg) return;
+    // Only close if clicking backdrop or close button, not the image or arrows
+    if (e.target === lightboxImg || e.target.closest('.lightbox-arrow')) return;
 
+    const lightbox = document.getElementById('lightbox');
     lightbox.classList.remove('active');
     document.body.style.overflow = '';
 }
 
-// Close lightbox with Escape key
+function lightboxNav(e, direction) {
+    e.stopPropagation();
+    if (galleryImages.length === 0) return;
+
+    currentImageIndex += direction;
+
+    // Wrap around
+    if (currentImageIndex < 0) currentImageIndex = galleryImages.length - 1;
+    if (currentImageIndex >= galleryImages.length) currentImageIndex = 0;
+
+    const lightboxImg = document.getElementById('lightboxImg');
+    lightboxImg.src = galleryImages[currentImageIndex].src;
+    lightboxImg.alt = galleryImages[currentImageIndex].alt;
+
+    // Quick fade transition
+    lightboxImg.style.opacity = '0';
+    lightboxImg.style.transform = 'scale(0.95)';
+    requestAnimationFrame(() => {
+        lightboxImg.style.transition = 'opacity 0.25s ease, transform 0.25s ease';
+        lightboxImg.style.opacity = '1';
+        lightboxImg.style.transform = 'scale(1)';
+    });
+}
+
+// Keyboard: Escape to close, arrow keys to navigate
 document.addEventListener('keydown', (e) => {
+    const lightbox = document.getElementById('lightbox');
+    if (!lightbox || !lightbox.classList.contains('active')) return;
+
     if (e.key === 'Escape') {
-        const lightbox = document.getElementById('lightbox');
-        if (lightbox && lightbox.classList.contains('active')) {
-            lightbox.classList.remove('active');
-            document.body.style.overflow = '';
-        }
+        lightbox.classList.remove('active');
+        document.body.style.overflow = '';
+    } else if (e.key === 'ArrowLeft') {
+        lightboxNav(e, -1);
+    } else if (e.key === 'ArrowRight') {
+        lightboxNav(e, 1);
     }
 });

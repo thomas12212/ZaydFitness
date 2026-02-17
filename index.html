@@ -18,8 +18,8 @@
             <a href="#" class="nav-brand">ZAYD</a>
             <div class="nav-right">
                 <div class="lang-toggle" id="langToggle">
-                    <button class="lang-btn active" data-lang="en">EN</button>
-                    <button class="lang-btn" data-lang="vi">VN</button>
+                    <button class="lang-btn active" data-lang="en"><span class="flag">&#127468;&#127463;</span> EN</button>
+                    <button class="lang-btn" data-lang="vi"><span class="flag">&#127483;&#127475;</span> VN</button>
                 </div>
                 <a href="#apply" class="nav-cta">
                     <span class="en">APPLY NOW</span>
@@ -36,9 +36,13 @@
             <a href="#" class="hero-brand">ZAYD</a>
             <div class="hero-right">
                 <div class="lang-toggle" id="heroLangToggle">
-                    <button class="lang-btn active" data-lang="en">EN</button>
-                    <button class="lang-btn" data-lang="vi">VN</button>
+                    <button class="lang-btn active" data-lang="en"><span class="flag">&#127468;&#127463;</span> EN</button>
+                    <button class="lang-btn" data-lang="vi"><span class="flag">&#127483;&#127475;</span> VN</button>
                 </div>
+                <a href="#apply" class="hero-cta-btn">
+                    <span class="en">APPLY NOW</span>
+                    <span class="vi">ĐĂNG KÝ NGAY</span>
+                </a>
             </div>
         </div>
         <div class="hero-content">
@@ -808,7 +812,9 @@
     <!-- LIGHTBOX MODAL -->
     <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
         <button class="lightbox-close" onclick="closeLightbox(event)">&times;</button>
+        <button class="lightbox-arrow lightbox-prev" onclick="lightboxNav(event, -1)">&#8249;</button>
         <img class="lightbox-img" id="lightboxImg" src="" alt="Enlarged view">
+        <button class="lightbox-arrow lightbox-next" onclick="lightboxNav(event, 1)">&#8250;</button>
     </div>
 
     <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>

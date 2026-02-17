@@ -248,6 +248,30 @@ body.lang-vi .final-cta h2 {
     color: var(--white);
 }
 
+.lang-btn .flag {
+    font-size: 1em;
+    margin-right: 2px;
+}
+
+/* Hero top-right Apply Now button */
+.hero-cta-btn {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.95rem;
+    letter-spacing: 2px;
+    padding: 10px 24px;
+    background: var(--cyan);
+    color: var(--black);
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 700;
+    transition: all 0.3s ease;
+}
+
+.hero-cta-btn:hover {
+    box-shadow: 0 4px 20px var(--cyan-glow);
+    transform: translateY(-2px);
+}
+
 /* ===========================
    HERO
    =========================== */
@@ -594,6 +618,57 @@ body.lang-vi .final-cta h2 {
 
 .lightbox-close:hover {
     color: var(--cyan);
+}
+
+.lightbox-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: var(--white);
+    font-size: 2.5rem;
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 10000;
+    line-height: 1;
+    padding-bottom: 4px;
+}
+
+.lightbox-arrow:hover {
+    background: var(--cyan);
+    color: var(--black);
+    border-color: var(--cyan);
+}
+
+.lightbox-prev {
+    left: 20px;
+}
+
+.lightbox-next {
+    right: 20px;
+}
+
+@media (max-width: 768px) {
+    .lightbox-arrow {
+        width: 44px;
+        height: 44px;
+        font-size: 2rem;
+    }
+
+    .lightbox-prev {
+        left: 10px;
+    }
+
+    .lightbox-next {
+        right: 10px;
+    }
 }
 
 /* ===========================
@@ -1233,7 +1308,8 @@ body.lang-vi .final-cta h2 {
         letter-spacing: 2px;
     }
 
-    .nav-cta {
+    .nav-cta,
+    .hero-cta-btn {
         padding: 8px 16px;
         font-size: 0.85rem;
     }
