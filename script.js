@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initScrollReveal();
     initFAQ();
     initFormSteps();
+    initGoalsOther();
     initSmoothScroll();
 });
 
@@ -112,6 +113,16 @@ function initFAQ() {
 
 let currentStep = 1;
 const totalSteps = 3;
+
+function initGoalsOther() {
+    const cb = document.getElementById('goalsOtherCheckbox');
+    const textInput = document.getElementById('goalsOtherText');
+    if (!cb || !textInput) return;
+    cb.addEventListener('change', () => {
+        textInput.style.display = cb.checked ? 'block' : 'none';
+        if (!cb.checked) textInput.value = '';
+    });
+}
 
 function initFormSteps() {
     const form = document.getElementById('applicationForm');
@@ -229,7 +240,13 @@ function handleSubmit(e) {
     // Collect checkbox values (Goals)
     const goals = [];
     document.querySelectorAll('input[name="Goals"]:checked').forEach(cb => {
-        goals.push(cb.value);
+        if (cb.value === 'Other') {
+            const otherText = document.getElementById('goalsOtherText').value.trim();
+            if (otherText) goals.push('Other: ' + otherText);
+            else goals.push('Other');
+        } else {
+            goals.push(cb.value);
+        }
     });
     formData.set('Goals', goals.join(', '));
 

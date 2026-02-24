@@ -76,7 +76,7 @@ function doPost(e) {
       to: applicantEmail,
       subject: confirmSubject,
       htmlBody: confirmHtml,
-      name: 'Zayd Fitness'
+      name: 'ZAYD Fitness Coaching'
     });
   }
 
