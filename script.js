@@ -257,11 +257,9 @@ function handleSubmit(e) {
             method: 'POST',
             body: formData,
         }).catch(() => {
-            // Silently fail - form submitted via iframe fallback
+            // Fallback to iframe submission if fetch fails
+            form.submit();
         });
-
-        // Also submit via iframe as fallback
-        form.submit();
     }
 
     // Show success
